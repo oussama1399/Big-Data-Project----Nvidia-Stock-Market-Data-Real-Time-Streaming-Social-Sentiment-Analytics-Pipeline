@@ -1,0 +1,57 @@
+digraph NVDA_Stock_Stream_Analytics {
+	rankdir=LR
+	splines=ortho
+	nodesep=0.6 ranksep=1.0
+	fontname="Arial-Bold" fontsize=20 label="\nArchitecture Big Data: NVDA Stock Stream Analytics\nStack: Python | Kafka | Spark Streaming | MongoDB Atlas" labelloc=t
+	subgraph cluster_0 {
+		node [color=white fontname=Arial shape=note style=filled]
+		color="#e1f5fe" label="1. Ingestion Layer (Python Producers)" style=filled
+		P1 [label="Stock Producer
+(yfinance)" color="#bbdefb"]
+		P2 [label="Reddit Producer
+(PRAW)" color="#ffccbc"]
+		P3 [label="StockTwits Producer
+(Requests)" color="#ffe0b2"]
+		P4 [label="Yahoo News Producer
+(yfinance)" color="#d1c4e9"]
+	}
+	subgraph cluster_1 {
+		node [color="#ff9800" fontcolor=white fontname="Arial-Bold" shape=box3d style=filled]
+		color="#fff3e0" label="2. Message Broker (Kafka - Docker)" style=filled
+		T1 [label="Topic:
+topic_stock_prices"]
+		T2 [label="Topic:
+topic_reddit_posts"]
+		T3 [label="Topic:
+topic_stocktwits_posts"]
+		T4 [label="Topic:
+topic_yahoo_news"]
+	}
+	subgraph cluster_2 {
+		color="#fbe9e7" label="3. Stream Processing (Spark - Docker)" style=filled
+		Spark [label="Spark Structured
+Streaming
+(ETL & Cleaning)" fillcolor="#ff5722" fontcolor=white height=1.5 shape=component style=filled]
+	}
+	subgraph cluster_3 {
+		node [fillcolor="#4caf50" fontcolor=white shape=cylinder style=filled]
+		color="#e8f5e9" label="4. Storage Layer (MongoDB Atlas)" style=filled
+		DB_Stock [label="Collection:
+stock_prices
+(TimeSeries)"]
+		DB_Social [label="Collections:
+- nvidia_reddit_posts
+- nvidia_stocktwits_posts
+- nvidia_yahoo_news"]
+	}
+	P1 -> T1 [label=" JSON"]
+	P2 -> T2 [label=" JSON"]
+	P3 -> T3 [label=" JSON"]
+	P4 -> T4 [label=" JSON"]
+	T1 -> Spark
+	T2 -> Spark
+	T3 -> Spark
+	T4 -> Spark [label=" Subscribe"]
+	Spark -> DB_Stock [label=" Write (Append)"]
+	Spark -> DB_Social [label=" Write (Append)"]
+}
