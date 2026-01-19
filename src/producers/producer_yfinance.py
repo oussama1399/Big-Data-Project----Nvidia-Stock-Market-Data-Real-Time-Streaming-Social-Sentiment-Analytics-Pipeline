@@ -16,7 +16,7 @@ def stream_stock_prices():
         try:
             # Récupérer la dernière minute
             nvda = yf.Ticker("NVDA")
-            df = nvda.history(period="1d", interval="1m")
+            df = nvda.history(period="1m", interval="1d")
             
             if not df.empty:
                 latest = df.iloc[-1]
