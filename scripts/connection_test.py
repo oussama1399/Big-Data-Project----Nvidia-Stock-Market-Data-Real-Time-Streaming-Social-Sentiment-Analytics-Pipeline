@@ -2,8 +2,8 @@
 from pymongo import MongoClient
 from urllib.parse import quote_plus
 
-username = quote_plus("db_user_laghchimoussama")
-password = quote_plus("olmongodb171")
+username = quote_plus("##############")
+password = quote_plus("##########")
 uri = f"mongodb+srv://{username}:{password}@ol-cluster.3agvwhk.mongodb.net/NvidiaStockData?retryWrites=true&w=majority"
 
 try:
