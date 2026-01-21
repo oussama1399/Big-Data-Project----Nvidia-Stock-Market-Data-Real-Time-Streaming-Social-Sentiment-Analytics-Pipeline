@@ -18,6 +18,23 @@ def stream_stock_prices():
             nvda = yf.Ticker("NVDA")
             df = nvda.history(period="1d", interval="1m")
             
+            # envoi de tout le dataframe
+            # if not df.empty:
+            #     for index, row in df.iterrows():
+            #         stock_json = {
+            #             "Date": str(row.name),
+            #             "Open": row["Open"],
+            #             "High": row["High"],
+            #             "Low": row["Low"],
+            #             "Close": row["Close"],
+            #             "Volume": int(row["Volume"]),
+            #             "Dividends": row["Dividends"],
+            #             "Stock Splits": row["Stock Splits"]
+            #         }
+            #         producer.send('topic_stock_prices', value=stock_json)
+            #         print(f"✅ Sent Stock: {stock_json['Close']} at {stock_json['Date']}")
+
+            # Cas streaming: envoyer uniquement la dernière ligne
             if not df.empty:
                 latest = df.iloc[-1]
                 

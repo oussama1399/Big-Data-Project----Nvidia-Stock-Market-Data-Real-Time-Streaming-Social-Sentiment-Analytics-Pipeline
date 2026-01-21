@@ -15,7 +15,7 @@ logging.getLogger("py4j").setLevel(logging.ERROR)
 KAFKA_BOOTSTRAP = "Kafka:29092"
 
 MONGO_USERNAME = "db_user_laghchimoussama"
-MONGO_PASSWORD = "###########"
+MONGO_PASSWORD = "olmongodb171"
 MONGO_CLUSTER = "ol-cluster.3agvwhk.mongodb.net"
 MONGO_DATABASE = "NvidiaStockData"
 

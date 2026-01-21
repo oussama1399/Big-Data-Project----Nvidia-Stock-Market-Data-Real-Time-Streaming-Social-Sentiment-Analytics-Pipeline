@@ -1,0 +1,10 @@
+kafka-python-ng
+pyspark
+yfinance
+pymongo 
+darts 
+prophet 
+torch
+dotenv
+scikit-learn
+xgboost
