@@ -1,0 +1,43 @@
+{
+    "prophet_best_params": {
+        "changepoint_prior_scale": 0.001,
+        "seasonality_prior_scale": 10.0,
+        "seasonality_mode": "multiplicative",
+        "changepoint_range": 0.95
+    },
+    "prophet_mape": 1.1713877209968224,
+    "prophet_rmse": 3.2490889343344898,
+    "xgboost_best_params": {
+        "lags": 7,
+        "lags_past_covariates": 21,
+        "n_estimators": 200,
+        "max_depth": 7,
+        "learning_rate": 0.1
+    },
+    "xgboost_mape": 1.100429085047158,
+    "xgboost_rmse": 2.5100233412893034,
+    "ensemble_weights": {
+        "prophet_factor": 0.5,
+        "xgb_factor": 0.5
+    },
+    "ensemble_mape": 0.9820316537167698,
+    "ensemble_rmse": 2.373950622136828,
+    "winner": "Ensemble",
+    "forecast_next_3_days": {
+        "prophet": [
+            185.97436574173489,
+            185.71964643018552,
+            185.34040903079855
+        ],
+        "xgboost": [
+            176.2583465576172,
+            179.0574493408203,
+            180.69248962402344
+        ],
+        "ensemble": [
+            181.11635614967605,
+            182.38854788550293,
+            183.016449327411
+        ]
+    }
+}
